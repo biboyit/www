@@ -1,0 +1,532 @@
+<!DOCTYPE HTML>
+<html manifest="mycache.manifest">
+    <head>
+    	<meta charset="utf-8">
+
+        <title>Cinema4You</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<!-- FontAwesome - http://fortawesome.github.io/Font-Awesome/ -->
+        <link rel="stylesheet" href="css/font-awesome.min.css" />
+
+		<!-- jQueryMobileCSS - original without styling -->
+		<link rel="stylesheet" href="css/jquery.mobile-1.4.2.min.css" />
+
+		<!-- nativeDroid core CSS -->
+        <link rel="stylesheet" href="css/jquerymobile.nativedroid.css" />
+
+		<!-- nativeDroid: Light/Dark -->
+        <link rel="stylesheet" href="css/jquerymobile.nativedroid.light.css"  id='jQMnDTheme' />
+
+		<!-- nativeDroid: Color Schemes -->
+        <link rel="stylesheet" href="css/jquerymobile.nativedroid.color.green.css" id='jQMnDColor' />
+		<!-- jQuery / jQueryMobile Scripts -->
+        
+		<script src="js/jquery-1.9.1.min.js"></script>
+        <script src="js/jquery.mobile-1.4.2.min.js"></script>
+        <script src="js/master.js"></script>        
+		<style>
+         .phimtd{
+			 color:#F60;
+		 }
+        </style>
+    </head>
+
+<body>
+
+<!--------------------------------------------Trang đăng nhập------------------------------------------------------------------->
+
+<div data-role="page" id="loginpage" data-theme='b'>
+	<div data-role="header" data-position="fixed" data-tap-toggle="false" data-theme='b'>
+        <h1><b class="phimtd">RẠP CHIẾU PHIM</b></h1>
+        <button onClick="closes()" data-icon="power" data-iconpos="notext"></button>
+ 	</div>   
+    <div data-role="content">
+        <img src="img/a1.png" height="100px" width="100%" style="padding-bottom:inherit"/>
+        	<ul data-role="listview" data-inset="true">
+            	<li data-role="fieldcontain">
+        			<label for="txtusername"><b>Tên đăng nhập:</b></label>
+            		<input type="text" name="txtusername" id="txtusername" value="" data-clear-btn="true"><br>
+            		<label for="txtpas"><b>Mật khẩu:</b></label>
+            		<input type="password" name="txtpas" id="txtpas" value="" data-clear-btn="true">   
+        		</li>
+        		<li>
+                    <fieldset class="ui-grid-a">
+                		<div class="ui-block-a"><button type="button" data-theme="b" onClick="dn()"><b class="phimtd">ĐĂNG NHẬP</b></button></div>
+                    	<div class="ui-block-b"><button type="button" data-theme="b" onClick="dk()"><b class="phimtd">ĐĂNG KÝ</b></button></div>
+                  	</fieldset>
+           		</li>
+        	</ul>
+        
+  	</div>
+</div>
+
+<!-------------------------------------------Hết trang đăng nhập------------------------------------------------------------
+
+
+<!--------------------------------------------trang đăng ký-------------------------------------------------------------------->
+
+<div data-role="page" id="registerpage" data-theme='b'>
+	<div data-role="header" data-position="fixed" data-tap-toggle="false" data-theme='b'>
+            <h1>Đăng Ký</h1>
+ 	</div>   
+    <div data-role="content">
+        <form>
+        	<ul data-role="listview" data-inset="true">
+            	<li data-role="fieldcontain">
+        			<label for="txtusername">Tên đăng nhập:</label>
+            		<input type="text" name="txtusername" id="txtusername" value="" data-clear-btn="true"><br>
+            		<label for="txtpas">Mật khẩu:</label>
+            		<input type="password" name="txtpas" id="txtpas" value="" data-clear-btn="true"><br>   
+                	<label for="txtrepas">Xác nhận Mật khẩu:</label>
+            		<input type="password" name="txtrepas" id="txtrepas" value="" data-clear-btn="true">   
+                </li>
+            	<li data-role="fieldcontain">
+        			<label for="txtname">Họ tên:</label>
+            		<input type="text" name="txtname" id="txtname" value="" data-clear-btn="true"><br>
+            		<label for="txtmail">Email:</label>
+            		<input type="email" name="txtmail" id="txtmail" value="" data-clear-btn="true"><br>   
+                </li>
+                <li data-role="fieldcontain">	
+                    <fieldset data-role="controlgroup">
+                            <legend>Giới tính:</legend>
+                            <input type="radio" name="radsex" id="radsex1" value="nam" checked="checked">
+                            <label for="radsex1">Nam</label>
+                            <input type="radio" name="radsex" id="radsex2" value="nu">
+                            <label for="radsex2">Nữ</label>
+                    </fieldset>
+                </li>               
+        		<li data-role="fieldcontain">
+           			<label for="txtphone">Điện thoại:</label>
+            		<input type="number" name="txtphone" id="txtphone" value="" data-clear-btn="true"><br>
+            		<label for="txtdate">Ngày sinh:</label>
+            		<input type="date" name="txtdate" id="txtdate" value="" data-clear-btn="true"><br>   
+                	<label for="txtpasport">CMND:</label>
+            		<input type="number" name="txtpasport" id="txtpasport" value="" data-clear-btn="true">
+                    <label for="txtaddress">Địa chỉ:</label>
+                    <textarea style="resize:none" cols="40" rows="8" name="txtaddress" id="txtaddress"></textarea>   
+           		</li>
+        	</ul>
+        </form>
+  	</div>
+    <div data-position="fixed" data-tap-toggle="false" data-role="footer" data-tap-toggle="false" data-theme='b'>
+			<div data-role="navbar">
+				<ul>
+					<li><a data-theme="b" data-role="button" id="btncancel">Hủy Đăng ký</a></li>
+					<li><a href='#popupDialog' data-rel='popup' data-position-to='window' data-role='button' data-transition='pop' data-inline='true'>Xác nhận</a>
+
+</li>
+				</ul>
+			</div>
+  			<div data-role='popup' id='popupDialog' data-theme='b'>
+				<div data-role='content' data-theme='b'>
+					<p>Chọn hình đại diện?</p>
+					<div class='showastabs center nobg'>
+                    <button id="btn1" data-theme="b">Có</button>
+                    <button id="btn2" data-theme="b">Không,Tiếp tục</button>
+                    <button id="btn3" data-theme="b">Hủy Đăng Ký</button>
+</div>
+</div>
+</div>
+
+		</div>
+</div>
+
+<!-------------------------------------------------------------Trang hồ sơ cá nhân------------------------------------->
+
+<div data-role="page" id="userpage" data-theme='b'>
+	<div data-role="header" data-position="fixed" data-tap-toggle="false" data-theme='b'>
+            <a href="#homepage" data-icon="home" data-iconpos="notext">Home</a>
+            <h1 id="tenuser"></h1>
+            <a href="#panelTuychon1" data-icon="gear" data-iconpos="notext">Tùy chỉnh</a>
+ 	</div>   
+    <div data-role="content">
+      	<ul data-role="listview" data-inset="false" data-icon="false" data-divider-theme="b" id="thongtintv">
+        <li>
+            <p id='emailuser'>biboyit@gmail.com</p>
+            <p id='dtuser'></p>
+         </li>
+        </ul>
+  	</div>
+    <div data-role='panel' id='panelTuychon1' data-theme='b' data-display="overlay" data-position="right" style="width:inherit">
+			<ul data-role="listview" data-inset="false" data-icon="false" data-divider-theme="b">
+            	<li>Tùy Chỉnh Hồ Sơ Cá Nhân</li>
+                <li><a href="#dmkpage">Đổi Mật Khẩu</a></li>
+            	<li><a href="#thongtincanhanpage">Thay đổi thông tin</a></li>
+            </ul>
+		</div>
+</div>
+
+<!------------------------------------------------------Trang chức năng--------------------------------------------------------->
+
+<div data-role="page" id="homepage" data-theme='b'>
+	<div data-role="header" data-position="fixed" data-tap-toggle="false" data-theme='b'>
+    		<a href="#panelTim" data-icon="search" data-iconpos="notext">Tìm kiếm</a>
+            <h1><b class="phimtd">RẠP CHIẾU PHIM</b></h1>
+            <a href="#panelTuychon" data-icon="gear" data-iconpos="notext">Cài đặt</a>
+ 	</div>   
+    <div data-role="content">
+      	<ul data-role="listview" data-inset="false" data-icon="false" data-divider-theme="b">
+        	<img src="img/a1.png" height="100px" width="100%" style="padding-bottom:inherit"/>
+            <li><a href="#userpage"><b class="phimtd">HỒ SƠ CÁ NHÂN</b></a></li>
+            <li id="btnlichchieu"><a><b class="phimtd">LỊCH CHIẾU</b></a></li>
+            <li id="tophimsc"><a onClick="Danhsachphim(phimbatdau)"><b class="phimtd">PHIM SẮP CHIẾU</b></a></li>
+            <li id="tophimdc"><a onClick="Danhsachphim(phimbatdau)"><b class="phimtd">PHIM ĐANG CHIẾU</b></a></li>
+            <li id="tophimhay"><a><b class="phimtd">TOP 5 PHIM BÌNH CHỌN</b></a></li>
+            <li><a href="#helppage"><b class="phimtd">TRỢ GIÚP</b></a></li>            
+        </ul>
+  	</div>
+    <div data-role='panel' id='panelTim' data-theme='b' data-position="left" data-display="overlay" style="width:inherit">
+			<ul data-role="listview" data-inset="false" data-icon="false" data-divider-theme="b">
+            <li>Tìm Phim</li>
+            </ul>
+            <input type="search" id="lphimtk"/>
+			<ul data-role='listview' data-icon="false" id="listphimtk" data-filter="true"></ul>
+            
+	</div>
+    <div data-role='panel' id='panelTuychon' data-theme='b' data-position="right" data-display="overlay" style="width:inherit">
+			<ul data-role="listview" data-inset="false" data-icon="false" data-divider-theme="b">
+            	<li>Tùy Chỉnh Ứng Dụng</li>
+                <li><a href="#settingpage">Tùy Chỉnh</a></li>
+            	<li id="btnlogouts"><a href="#loginpage">Đăng xuất</a></li>
+            	<li><a href="#homescreenpage">Thoát</a></li>
+          	</ul>
+	</div>
+</div>
+
+
+<!---------------------------------------------------Trang danh sach phim------------------------------------------------>
+
+<div data-role="page" id="listphimpage" data-theme='b'>
+	<div data-role="header" data-position="fixed" data-tap-toggle="false" data-theme='b'>
+    		<a href="#homepage" data-icon="home" data-iconpos="notext">home</a>	 
+         <h2><b class="phimtd"  id="listphimpageheader"></b></h2>
+ 	</div>   
+    <div data-role="content">
+      <ul data-role="listview" data-inset="false" data-icon="false" data-divider-theme="b" id="listphim"></ul>
+  	</div>
+    <div data-position="fixed" data-tap-toggle="false" data-role="footer" data-tap-toggle="false" data-theme='b'>
+			<div data-role="navbar">
+				<ul>
+					<li><button type="button" data-theme="b" id="btnback"><b class="phimtd">...TRỞ LẠI</b></button></li>
+					<li><button type="button" data-theme="b" id="btnnext"><b class="phimtd">XEM TIẾP...</b></button></li>
+				</ul>
+			</div>
+		</div>
+</div>
+
+<!---------------------------------------------Trang lich chieu phim theo ngay--------------------------------------------------->
+
+<div data-role="page" id="lichchieupage" data-theme='b'>
+	<div data-role="header" data-position="fixed" data-tap-toggle="false" data-theme='b'>
+    		<a href="#homepage" data-icon="home" data-iconpos="notext">home</a>	 
+         <h2 id="lichchieuheader"></h2>
+ 	</div>   
+    <div data-role="content">
+      <ul data-role="listview" data-inset="false" data-icon="false" data-divider-theme="b" id="lichchieu"></ul>
+  	</div>
+</div>
+
+
+
+<!---------------------------------------------Trang lich chieu phim theo ngay--------------------------------------------------->
+
+<div data-role="page" id="lichchieu1page" data-theme='b'>
+	<div data-role="header" data-position="fixed" data-tap-toggle="false" data-theme='b'>
+    		<a href="#homepage" data-icon="home" data-iconpos="notext">home</a>	 
+         <h2 id="lichchieu1header"></h2>
+ 	</div>   
+    <div data-role="content">
+      <ul data-role="listview" data-inset="false" data-icon="false" data-divider-theme="b" id="lichchieu1">
+      	<li><a id="ngay10" onclick="xemgio1(0);"></a></li>
+            <li><a id="ngay11" onclick="xemgio1(1);"></a></li>
+            <li><a id="ngay12" onclick="xemgio1(2);"></a></li>
+            <li><a id="ngay13" onclick="xemgio1(3);"></a></li>
+            <li><a id="ngay14" onclick="xemgio1(4);"></a></li>
+            <li><a id="ngay15" onclick="xemgio1(5);"></a></li>
+            <li><a id="ngay16" onclick="xemgio1(6);"></a></li>
+      </ul>
+  	</div>
+</div>
+
+<!-----------------------------------------------------Trang Thông tin phim------------------------------------------------>
+
+<div data-role="page" id="thongtinphimpage" data-theme='b'>
+	<div data-role="header" data-position="fixed" data-tap-toggle="false" data-theme='b'>
+    	<a data-icon="back" data-iconpos="notext" id="backthongtinphimpage">quaylai</a>
+        <h5><b class="phimtd" id="phimheader"></b></h5>
+ 	</div>   
+    <div data-role="content">
+    	<ul data-role="listview">
+        <p>
+        	<div data-role="navbar">
+        		<b class="phimtd">Tên Gốc:</b>
+        		<b id="phimteng"></b>
+            </div>
+        </p>
+        <p>
+        	<div data-role="navbar">
+        		<b class="phimtd">Loại Phim:</b>
+      			<b id="phimlp"></b>
+        	</div>
+        </p>
+        <p>
+        	<div data-role="navbar">
+        		<b class="phimtd">Thể Loại:</b>
+      			<b id="phimtl"></b>
+        	</div>
+        </p>
+        <p>
+        	<div data-role="navbar">
+        		<b class="phimtd">Diễn Viên:</b>
+      			<b id="phimdv"></b>
+       		</div>
+        </p>
+        <p>
+        	<div data-role="navbar">
+        		<b class="phimtd">Đạo Diễn:</b>
+      			<b id="phimdd"></b>
+        	</div>
+        </p>
+        <p>
+        	<div data-role="navbar">
+        		<b class="phimtd">Năm Sản Xuất:</b>
+      			<b id="phimnamsx"></b>
+        	</div>
+        </p>
+        <p>
+        	<div data-role="navbar">
+        		<b class="phimtd">Đánh Giá:</b>
+      			<b id="phimdanhgia"></b>
+        	</div>
+        </p>
+        <p>
+        	<div data-role="navbar">
+        		<b class="phimtd">Ngôn Ngữ:</b>
+      			<b id="phimngongu"></b>
+        	</div>
+        </p>
+        <p>
+        	<div data-role="navbar">
+        		<b class="phimtd">Quốc Gia:</b>
+      			<b id="phimquocgia"></b>
+        	</div>
+        </p>
+        <p>
+        	<div data-role="navbar">
+        		<b class="phimtd">Khởi Chiếu:</b>
+      			<b id="phimngaykc"></b>
+        	</div>
+        </p>
+       
+        <li id="phimdotuoi"></li>
+      	
+        <p id="phimgt" align='justify'></p>
+      	<p id="posterphim"></p>
+	</ul>
+  	</div>
+    <div data-position="fixed" data-tap-toggle="false" data-role="footer" data-tap-toggle="false" data-theme='b'>
+			<div data-role="navbar">
+				<ul>
+					<li><a data-theme="b" data-role="button" id="btnxemlc" data-transition="slide"><b class="phimtd">LỊCH CHIẾU</b></a></li>
+					<li><a href='#popupdgphim' data-rel='popup' data-position-to='window' data-role='button' data-transition='pop' data-inline='true'><b class="phimtd">ĐÁNH GIÁ</b></a></li>
+				</ul>
+			</div>
+	</div>
+    <div data-role='popup' id='popupdgphim' data-theme='b'>
+		<div data-role='content' data-theme='b'>
+			<div class='showastabs center nobg'>
+                <button id="btnlike" data-theme="b" data-icon="thumbs-up" data-iconpos="left">THÍCH</button>
+                <button id="btndlike" data-theme="b">KHÔNG THÍCH</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!---------------------------------------------- Lịch Chiếu theo phim 1---------------------------------------------------------->
+
+
+<div data-role="page" id="lichchieuphim1page" data-theme='b'>
+	<div data-role="header" data-position="fixed" data-tap-toggle="false" data-theme='b'>
+            <a href="#thongtinphimpage" data-icon="back" data-iconpos="notext">back</a>
+            <h1><b id="lcphimheader" class="phimtd"></b></h1>
+ 	</div>   
+    <div data-role="content">
+      <ul data-role="listview" data-inset="false" data-icon="false" data-divider-theme="b" id="lctp1">
+      		<li><a onclick="xemgio(0);"><b id="ngay0"></b></a></li>
+            <li><a onclick="xemgio(1);"><b id="ngay1"></b></a></li>
+            <li><a onclick="xemgio(2);"><b id="ngay2"></b></a></li>
+            <li><a onclick="xemgio(3);"><b id="ngay3"></b></a></li>
+            <li><a onclick="xemgio(4);"><b id="ngay4"></b></a></li>
+            <li><a onclick="xemgio(5);"><b id="ngay5"></b></a></li>
+            <li><a onclick="xemgio(6);"><b id="ngay6"></b></a></li>
+      </ul>
+  	</div>
+</div>
+
+<!---------------------------------------------- Lịch Chiếu theo phim------------------------------------------------------------>
+
+
+<div data-role="page" id="lichchieuphimpage" data-theme='b'>
+	<div data-role="header" data-position="fixed" data-tap-toggle="false" data-theme='b'>
+            <a href="#thongtinphimpage" data-icon="back" data-iconpos="notext">back</a>
+            <h1><b class="phimtd" id="lcphim1header"></b></h1>
+ 	</div>   
+    <div data-role="content">
+      <ul data-role="listview" data-inset="false" data-icon="false" data-divider-theme="b" id="lctp"></ul>
+  	</div>
+</div>
+
+
+
+
+
+<!--------------------------------------------Trang xep hang phim---------------------------------------------------------------->
+
+<div data-role="page" id="rankphimpage" data-theme='b'>
+	<div data-role="header" data-position="fixed" data-tap-toggle="false" data-theme='b'>
+            <a href="#homepage" data-icon="home" data-iconpos="notext">home</a>
+            <h1>TOP PHIM HAY</h1>
+ 	</div>   
+    <div data-role="content">
+      <ol data-role="listview" data-inset="false" data-icon="false" data-divider-theme="b" id="listphimhay"></ol>
+  	</div>
+</div>
+
+<!--------------------------------------------đổi mật khẩu page------------------------------------------------------------------>
+
+<div data-role="page" id="dmkpage" data-theme='b'>
+	<div data-role="header" data-position="fixed" data-tap-toggle="false" data-theme='b'>
+            <a href="#home" data-icon="home" data-iconpos="notext">home</a>
+            <h1>ĐỔI MẬT KHẨU</h1>
+ 	</div>   
+    <div data-role="content">
+      <ul data-role="listview" data-inset="false" data-icon="false" data-divider-theme="b" id="doimatkhau">
+      	<li>Mật Khẩu Cũ</li>
+        <li><input type="password"/></li>
+        <li>Mật Khẩu Mới</li>
+        <li><input type="password"/></li>
+        <li>Xác Nhận Mật Khẩu Mới</li>
+        <li><input type="password"/></li>
+        <li><button>Xác Nhận</button><button>Hủy Bỏ</button></li>
+      </ul>
+  	</div>
+</div>
+
+<!------------------------------------------thông tin ca nhan page--------------------------------------------------------------->
+
+<div data-role="page" id="thongtincanhanpage" data-theme='b'>
+	<div data-role="header" data-position="fixed" data-tap-toggle="false" data-theme='b'>
+            <a href="#homepage" data-icon="home" data-iconpos="notext">home</a>
+            <h1>Cập Nhật Thông Tin</h1>
+ 	</div>   
+    <div data-role="content">
+      <ul data-role="listview" data-inset="false" data-icon="false" data-divider-theme="b" id="thongtincanhan"></ul>
+  	</div>
+</div>
+
+<!---------------------------------------Chọn loại vé---------------------------------------------------------------------------->
+
+<div data-role="page" id="loaivepage" data-theme='b'>
+	<div data-role="header" data-position="fixed" data-tap-toggle="false" data-theme='b'>
+        <a href="#lichchieuphimpage" data-icon="back" data-iconpos="notext">back</a>
+        <h1><b class="phimtd">CHỌN LOẠI VÉ</b></h1>
+ 	</div>   
+    <div data-role="content">
+      	<ul data-role="listview" data-inset="false" data-icon="false" data-divider-theme="b" id="listloaive"></ul>
+  	</div>
+</div>
+
+<!-------------------------------------CHỌN SỐ LƯỢNG VÉ-------------------------------------------------------------------------->
+
+<div data-role="page" id="soluongvepage" data-theme='b'>
+	<div data-role="header" data-position="fixed" data-tap-toggle="false" data-theme='b'>
+        <a href="#home" data-icon="home" data-iconpos="notext">home</a>
+        <h1>NHẬP SỐ LƯỢNG VÉ</h1>
+ 	</div>   
+    <div data-role="content">
+      	<ul data-role="listview" data-inset="false" data-icon="false" data-divider-theme="b" id="listsoluongve"></ul>
+  	</div>
+</div>
+
+<!----------------------------------------------Chọn ghế------------------------------------------------------------------------->
+
+<div data-role="page" id="chonghepage" data-theme='b'>
+	<div data-role="header" data-position="fixed" data-tap-toggle="false" data-theme='b'>
+        <a href="#home" data-icon="home" data-iconpos="notext">home</a>
+        <h3 id="chongheheader"></h3>
+        <a href="#thanhtoanpage" data-icon="check" data-iconpos="notext">thanh toan</a>
+ 	</div>   
+    <div data-role="content">
+			<div data-role="navbar">
+                <ul id="sodoghe" data-role="listview" data-inset="false" data-icon="false" data-divider-theme="b"></ul>
+			</div>
+  	</div>
+</div>
+
+<!-------------------------------------Thanh toan ------------------------------------------------------------------------------->
+
+<div data-role="page" id="thanhtoanpage" data-theme='b'>
+	<div data-role="header" data-position="fixed" data-tap-toggle="false" data-theme='b'>
+        <h3 id="thanhtoanheader">KẾT QUẢ ĐẶT VÉ</h3>
+ 	</div>   
+    <div data-role="content">
+    <div data-role="navbar" id="thanhtoanlist">
+        <ul data-role="listview" data-inset="false" data-icon="false" data-divider-theme="b">
+        	<li><b>Tên Phim</b></li>
+            <p id="thanhtoantenphim"></p>
+            <li><b>Loại Phim</b></li>
+            <p id="thanhtoanloaiphim"></p>
+            <li><b>Ngày Chiếu</b></li>
+            <p id="thanhtoanngaychieu"></p>
+            <li><b>Giờ Chiếu</b></li>
+            <p id="thanhtoangiochieu"></p>            
+            <li><b>Số Lượng</b></li>
+            <p id="thanhtoansoluong"></p>
+            <li><b>Ghế</b></li>
+            <p id="thanhtoandsghe"></p>            
+            <li><b>Đơn Giá</b></li>
+            <p id="thanhtoandongia"></p>
+            <li><b>Thành Tiền</b></li>
+            <p id="thanhtoanthanhtien"></p>
+            </ul>
+       </div>
+       <div data-position="fixed" data-tap-toggle="false" data-role="footer" data-tap-toggle="false" data-theme='b'>
+       <div data-role="navbar">
+       <ul data-role="listview" data-inset="false" data-icon="false" data-divider-theme="b">
+            <li><a href="#"><center>THANH TOÁN</center></a></li>
+            <li><a href="#homepage"><center>HỦY ĐẶT VÉ</center></a></li>
+           </ul>
+           </div>
+  	</div>
+    </div>
+</div>
+
+
+<!---------------------------------------------------Trang trợ giúp-------------------------------------------------------------->
+
+<div data-role="page" id="helppage" data-theme='b'>
+	<div data-role="header" data-position="fixed" data-tap-toggle="false" data-theme='b'>
+        <a href="#homepage" data-icon="home" data-iconpos="notext">home</a>
+        <h3>Trợ Giúp</h3>
+ 	</div>   
+    <div data-role="content">
+       <div data-role="collapsibleset" data-content-theme="b">
+    		<div data-role="collapsible" data-content-theme="b">
+        		<h3>Giới thiệu</h3>
+    			<p>I'm the collapsible content for section 1</p>
+    		</div>
+    		<div data-role="collapsible" data-content-theme="b">
+        		<h3>Hướng dẫn xem lịch chiếu</h3>
+    			<p>I'm the collapsible content for section 2</p>
+   			</div>
+    		<div data-role="collapsible" data-content-theme="b">
+        		<h3>Hướng dẫn đặt vé</h3>
+    			<p>I'm the collapsible content for section 3</p>
+    		</div>
+		</div>
+  	</div>
+</div>
+
+</body>
+</html>
